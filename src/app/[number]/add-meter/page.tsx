@@ -1,7 +1,6 @@
 import FormMeterAdd from "@/app/components/FormMeterAdd";
 import MeterDataTable from "@/app/components/MeterDataTable";
 import Link from "next/link";
-import { Suspense } from "react";
 
 export default async function Page({
   params,
@@ -25,9 +24,7 @@ export default async function Page({
         <div className="flex flex-col gap-4 w-full">
           <h1 className="text-2xl font-semibold text-center">Meters</h1>
           <p className="text-center text-gray-300">Meters will be shown here</p>
-          <Suspense fallback={<div>Loading...</div>}>
-            <MeterDataTable number={number} />
-          </Suspense>
+          <MeterDataTable number={number} />
         </div>
       </div>
     </main>
