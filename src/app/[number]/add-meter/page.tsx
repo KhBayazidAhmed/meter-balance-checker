@@ -14,7 +14,7 @@ export default async function Page({
         <h1 className="text-2xl font-semibold text-center">
           Your Number :{number}
         </h1>
-        <Link href={`/${number}`}>
+        <Link prefetch={true} href={`/${number}`}>
           <button className="border hover:border-blue-700 bg-white hover:text-blue-700 text-black font-bold py-2 px-4 rounded-sm">
             Go Back
           </button>

@@ -1,6 +1,19 @@
+import { drizzle } from "drizzle-orm/vercel-postgres";
 import MeterDataShowcase from "../components/MeterDataShowcase";
 import Link from "next/link";
+import { UsersTable } from "@/drizzle/schema";
+const db = drizzle();
+export async function generateStaticParams() {
+  const users = await db
+    .select({
+      number: UsersTable.mobileNumber,
+    })
+    .from(UsersTable);
 
+  return users.map((user) => ({
+    number: user.number,
+  }));
+}
 export default async function Page({
   params,
 }: {
@@ -15,7 +28,7 @@ export default async function Page({
         Meter Data for {number}
       </h1>
       <div className="w-full flex justify-end">
-        <Link href={`/${number}/add-meter`}>
+        <Link prefetch={true} href={`/${number}/add-meter`}>
           <button className=" border hover:border-blue-700 bg-white hover:text-blue-700 text-black font-bold py-2 px-4 rounded-sm">
             Add Meter
           </button>
