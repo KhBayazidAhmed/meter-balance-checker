@@ -1,7 +1,6 @@
 import { MetersTable, UsersTable } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/vercel-postgres";
-import { notFound } from "next/navigation";
 import MeterBalanceShowcase from "./MeterBalanceShowcase";
 import MeterDailyConsumption from "./MeterDailyConsumption";
 const db = drizzle();
@@ -21,7 +20,7 @@ export default async function MeterDataShowcase({
     .innerJoin(UsersTable, eq(MetersTable.userId, UsersTable.id))
     .where(eq(UsersTable.mobileNumber, number));
   if (data.length === 0) {
-    return notFound();
+    return <div className="text-center">Meter Data Not Found</div>;
   }
   return (
     <div>

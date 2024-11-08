@@ -35,12 +35,12 @@ export const createUser = async (_privState: any, formData: FormData) => {
 
     // Insert new user
     await db.insert(UsersTable).values(userData);
-
     return {
       success: true,
       message: "User created successfully",
       redirectTo: mobileNumber,
     };
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error(error.message);

@@ -2,7 +2,10 @@ import { drizzle } from "drizzle-orm/vercel-postgres";
 import MeterDataShowcase from "../components/MeterDataShowcase";
 import Link from "next/link";
 import { UsersTable } from "@/drizzle/schema";
+import { eq } from "drizzle-orm";
+import { notFound } from "next/navigation";
 const db = drizzle();
+export const dynamicParams = true;
 export async function generateStaticParams() {
   const users = await db
     .select({
@@ -14,13 +17,23 @@ export async function generateStaticParams() {
     number: user.number,
   }));
 }
+
 export default async function Page({
   params,
 }: {
   params: Promise<{ number: string }>;
 }) {
   const number = (await params).number as string;
+  const user = await db
+    .select({
+      mobileNumber: UsersTable.mobileNumber,
+    })
+    .from(UsersTable)
+    .where(eq(UsersTable.mobileNumber, number));
 
+  if (user.length === 0) {
+    notFound();
+  }
   // Render the page with conditional data mapping
   return (
     <div className="py-10 px-20 ">
@@ -38,23 +51,3 @@ export default async function Page({
     </div>
   );
 }
-// function MeterDataShowcaseSkeleton() {
-//   return (
-//     <div>
-//       {Array.from({ length: 5 }).map((_, index) => (
-//         <div
-//           className="border-b flex py-3 items-center justify-between border-white animate-pulse"
-//           key={index}
-//         >
-//           <div>
-//             <h2 className="font-bold text-base">
-//               <span className="bg-gray-300 h-5 w-24 rounded-md inline-block"></span>
-//               <span className="ml-2 bg-green-200 h-5 w-16 rounded-md inline-block"></span>
-//             </h2>
-//           </div>
-//           <div className="bg-gray-300 h-5 w-12 rounded-md"></div>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
