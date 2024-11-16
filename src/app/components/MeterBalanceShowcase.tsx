@@ -29,25 +29,22 @@ export default function MeterBalanceShowcase({ meterId }: { meterId: string }) {
     refetchOnWindowFocus: false,
   });
   return (
-    <div className="flex flex-col self-center gap-2 items-center pr-8">
-      <div>
-        <h2 className="font-bold text-base">
-          {" "}
-          Meter No :{" "}
-          <span className="text-green-500 font-semibold ">
+    <div className="flex flex-col self-center gap-2 items-center pr-8 w-full md:w-auto">
+      <div className="w-full">
+        <h2 className="font-bold text-sm md:text-base">
+          Meter No:{" "}
+          <span className="text-green-500 font-semibold">
             {isLoading ? "Loading..." : data?.data.meterNo}
           </span>
         </h2>
-        <h2 className="font-bold text-base">
-          {" "}
-          Balance :{" "}
-          <span className="text-green-500 font-semibold ">
+        <h2 className="font-bold text-sm md:text-base">
+          Balance:{" "}
+          <span className="text-green-500 font-semibold">
             {isLoading ? "Loading..." : data?.data.balance + " BDT"}
           </span>
         </h2>
-        <h2 className="font-bold text-base">
-          {" "}
-          ReadingTime :{" "}
+        <h2 className="font-bold text-sm md:text-base">
+          ReadingTime:{" "}
           <span className="text-green-500 font-semibold">
             {isLoading
               ? "Loading..."
@@ -64,10 +61,9 @@ export default function MeterBalanceShowcase({ meterId }: { meterId: string }) {
               : ""}
           </span>
         </h2>
-        <h2 className="font-bold text-base">
-          {" "}
-          Current Month Consumption :{" "}
-          <span className="text-green-500 font-semibold ">
+        <h2 className="font-bold text-sm md:text-base">
+          Current Month Consumption:{" "}
+          <span className="text-green-500 font-semibold">
             {isLoading
               ? "Loading..."
               : data?.data.currentMonthConsumption + " BDT"}
