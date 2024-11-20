@@ -25,10 +25,10 @@ export default function MeterBalanceShowcase({
     <>
       {result.map((meter, index) => (
         <div
-          className="border-b flex py-3 items-center justify-between border-white flex-wrap md:flex-nowrap"
+          className="border-b flex py-3  items-center justify-between border-white flex-wrap xl:flex-nowrap"
           key={index}
         >
-          <div className="w-full md:w-auto">
+          <div className="w-full pl-3 md:w-auto">
             <h2 className="font-bold text-sm md:text-base">
               Name:{" "}
               <span className="text-green-500 font-semibold">
@@ -80,9 +80,7 @@ export default function MeterBalanceShowcase({
               </div>
             </div>
           </div>
-          <div className="flex gap-2 flex-col  items-center w-full md:w-auto justify-center mt-4 md:mt-0">
-            <MeterDailyConsumption meterId={meterIds[index].meterId} />
-          </div>
+          <MeterDailyConsumption meterId={meterIds[index].meterId} />
         </div>
       ))}
     </>

@@ -9,6 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
   Tooltip,
+  // CartesianGrid,
 } from "recharts";
 import { ChartContainer } from "@/components/ui/chart";
 
@@ -93,11 +94,14 @@ export default function MeterDailyConsumption({
   });
   const dailyConsumption = calculateDailyConsumption(data?.data || []);
   return (
-    <ChartContainer config={chartConfig} className="h-[400px] w-full">
+    <ChartContainer
+      config={chartConfig}
+      className="w-full h-[200px] my-4 md:w-[900px] md:h-[300px]"
+    >
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           data={dailyConsumption}
-          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+          margin={{ top: 20, right: 0, left: 0, bottom: 5 }}
         >
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <XAxis
@@ -130,6 +134,7 @@ export default function MeterDailyConsumption({
             labelStyle={{ color: "hsl(var(--foreground))" }}
           />
           <Legend />
+
           <Line
             yAxisId="left"
             type="monotone"
@@ -144,6 +149,7 @@ export default function MeterDailyConsumption({
               offset: 10,
             }}
           />
+
           <Line
             yAxisId="right"
             type="monotone"
