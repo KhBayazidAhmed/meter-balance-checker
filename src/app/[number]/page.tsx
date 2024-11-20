@@ -1,5 +1,5 @@
 import { drizzle } from "drizzle-orm/vercel-postgres";
-import MeterDataShowcase from "../components/MeterDataShowcase";
+import MeterDataShowcase from "../components/MeterDataShowcaseContainer";
 import Link from "next/link";
 import { UsersTable } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
@@ -36,7 +36,7 @@ export default async function Page({
   }
   // Render the page with conditional data mapping
   return (
-    <div className="py-10 px-20 ">
+    <div className="md:py-10 md:px-20 ">
       <h1 className="text-3xl text-center font-bold">
         Meter Data for {number}
       </h1>
