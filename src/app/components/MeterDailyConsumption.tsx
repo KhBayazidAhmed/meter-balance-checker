@@ -89,8 +89,6 @@ export default function MeterDailyConsumption({
       );
       return response.json();
     },
-    staleTime: 1000 * 60 * 60,
-    refetchOnWindowFocus: false,
   });
   const dailyConsumption = calculateDailyConsumption(data?.data || []);
   return (

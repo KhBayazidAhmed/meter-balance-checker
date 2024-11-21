@@ -16,8 +16,6 @@ export default function MeterBalanceShowcase({
     queries: meterIds.map((meterId) => ({
       queryKey: ["meterBalance", meterId.meterId],
       queryFn: () => fetchMeterBalance(meterId.meterId),
-      staleTime: 1000 * 60 * 60, // 1 hour
-      refetchOnWindowFocus: false,
     })),
   });
 
