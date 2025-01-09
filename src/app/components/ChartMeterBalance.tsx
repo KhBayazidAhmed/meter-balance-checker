@@ -41,11 +41,12 @@ export default function ChartMeterBalance({
       .map((result, index) => ({
         name: meterIds[index].name,
         balance: result.data?.data.balance || 0,
+        readingTime: result.data?.data.readingTime,
       }));
   }, [results, meterIds]);
 
   // Show skeleton loader while fetching or if no data
-  if (isFetching || !filteredData.length) {
+  if (isFetching) {
     return (
       <Card className="my-6 w-full max-w-4xl mx-auto bg-transparent border-0">
         <CardHeader>

@@ -24,6 +24,7 @@ export default function DesktopChart({
   filteredData: {
     name: string;
     balance: number;
+    readingTime: string | undefined;
   }[];
 }) {
   return (
@@ -33,7 +34,18 @@ export default function DesktopChart({
           Meter Balances
         </CardTitle>
         <CardDescription className="text-center text-sm text-white">
-          Balance data as of yesterday at 12:00 AM
+          Balance data of{" "}
+          {filteredData[0]?.readingTime
+            ? new Intl.DateTimeFormat("en-BD", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                hour12: true,
+                timeZone: "Asia/Dhaka",
+              }).format(new Date(filteredData[0].readingTime))
+            : ""}
         </CardDescription>
       </CardHeader>
       <CardContent className="bg-transparent">
@@ -57,7 +69,20 @@ export default function DesktopChart({
         </ResponsiveContainer>
       </CardContent>
       <CardFooter className="flex justify-between text-sm text-muted-foreground">
-        <span className="text-white">Reading time: Yesterday at 12:00 AM</span>
+        <span className="text-white">
+          Reading time : {""}
+          {filteredData[0]?.readingTime
+            ? new Intl.DateTimeFormat("en-BD", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                hour12: true,
+                timeZone: "Asia/Dhaka",
+              }).format(new Date(filteredData[0].readingTime))
+            : ""}
+        </span>
         <span className="text-white">Balances may vary slightly</span>
       </CardFooter>
     </Card>

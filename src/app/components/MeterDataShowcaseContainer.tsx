@@ -19,6 +19,7 @@ export default async function MeterDataShowcase({
     .from(MetersTable)
     .innerJoin(UsersTable, eq(MetersTable.userId, UsersTable.id))
     .where(eq(UsersTable.mobileNumber, number))
+    .orderBy(MetersTable.name);
 
   if (data.length === 0) {
     return <div className="text-center">Meter Data Not Found</div>;
