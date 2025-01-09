@@ -5,7 +5,6 @@ import { UsersTable } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 const db = drizzle();
-export const dynamicParams = true;
 export async function generateStaticParams() {
   const users = await db
     .select({
