@@ -18,7 +18,6 @@ export default function MeterBalanceShowcase({
       queryFn: () => fetchMeterBalance(meterId.meterId),
     })),
   });
-
   return (
     <>
       {result.map((meter, index) => (
@@ -26,7 +25,7 @@ export default function MeterBalanceShowcase({
           className="border-b flex py-3  items-center justify-between border-white flex-wrap xl:flex-nowrap"
           key={index}
         >
-          <div className="w-full pl-3 md:w-auto">
+          <div className="w-full pl-3 md:w-auto text-nowrap">
             <h2 className="font-bold text-sm md:text-base">
               Name:{" "}
               <span className="text-green-500 font-semibold">
@@ -38,7 +37,13 @@ export default function MeterBalanceShowcase({
                 <h2 className="font-bold text-sm md:text-base">
                   Meter No:{" "}
                   <span className="text-green-500 font-semibold">
-                    {meter.isLoading ? "Loading..." : meter.data?.data.meterNo}
+                    {meter.isLoading ? "Loading..." : meter.data?.data?.meterNo}
+                  </span>
+                </h2>
+                <h2 className="font-bold text-sm md:text-base">
+                  Account No:{" "}
+                  <span className="text-green-500 font-semibold">
+                    {meter.isLoading ? "Loading..." : meter.data?.data?.accountNo}
                   </span>
                 </h2>
                 <h2 className="font-bold text-sm md:text-base">
@@ -78,7 +83,7 @@ export default function MeterBalanceShowcase({
               </div>
             </div>
           </div>
-          <MeterDailyConsumption meterId={meterIds[index].meterId} />
+          <MeterDailyConsumption meterId={meterIds[index].meterId} accountId={meter.data?.data?.accountNo} />
         </div>
       ))}
     </>
