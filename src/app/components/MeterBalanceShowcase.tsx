@@ -12,10 +12,10 @@ export default function MeterBalanceShowcase({
     name: string;
   }[];
 }) {
-  const result = useQueries({
+  const result =  useQueries({
     queries: meterIds.map((meterId) => ({
       queryKey: ["meterBalance", meterId.meterId],
-      queryFn: () => fetchMeterBalance(meterId.meterId),
+      queryFn:  () =>  fetchMeterBalance(meterId.meterId),
     })),
   });
   return (
@@ -83,7 +83,9 @@ export default function MeterBalanceShowcase({
               </div>
             </div>
           </div>
-          <MeterDailyConsumption meterId={meterIds[index].meterId} accountId={meter.data?.data?.accountNo} />
+         { meter.data?.data?.accountNo &&
+          <MeterDailyConsumption meterId={meterIds[index].meterId} accountId={meter.data?.data?.accountNo || ""} />
+         }
         </div>
       ))}
     </>

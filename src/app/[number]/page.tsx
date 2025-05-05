@@ -5,18 +5,17 @@ import { UsersTable } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 const db = drizzle();
-// export async function generateStaticParams() {
-//   const users = await db
-//     .select({
-//       number: UsersTable.mobileNumber,
-//     })
-//     .from(UsersTable);
+export async function generateStaticParams() {
+  const users = await db
+    .select({
+      number: UsersTable.mobileNumber,
+    })
+    .from(UsersTable);
 
-//   return users.map((user) => ({
-//     number: user.number,
-//   }));
-// }
-export const dynamic = "force-dynamic";
+  return users.map((user) => ({
+    number: user.number,
+  }));
+}
 export default async function Page({
   params,
 }: {

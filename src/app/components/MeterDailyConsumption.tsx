@@ -88,7 +88,7 @@ export default function MeterDailyConsumption({
   accountId,
 }: {
   meterId: string;
-  accountId?: string;
+  accountId: string;
 }) {
 
   const { data, isLoading } = useQuery<ApiResponse>({
